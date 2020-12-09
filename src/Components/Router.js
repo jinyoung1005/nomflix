@@ -12,20 +12,20 @@ import Search from "../Routes/Search";
 
 export default () => (
   <Router>
-    {/* <Switch>
+    <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/tv" component={TV} />
       <Route path="/search" component={Search} />
       <Redirect from="*" to="/" />
-    </Switch> */}
+    </Switch>
     <>
       <Header />
-      <Switch>
+      {/* <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/tv" component={TV} />
         <Route path="/search" component={Search} />
         <Redirect from="*" to="/" />
-      </Switch>
+      </Switch> */}
     </>
   </Router>
 );
