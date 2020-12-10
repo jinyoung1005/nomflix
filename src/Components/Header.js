@@ -1,5 +1,6 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -27,6 +28,11 @@ const Item = styled.li`
   text-align: center;
   height:50px;
   /* height로 헤더 글자들이 위로 올라감 */
+  border-bottom:5px solid 
+    ${props => (props.current ? "#3498db" : "transparent")};
+  /* 헤더에 파란색 밑줄이 생김 solid 사이즈는 밑줄 높이사이즈*/
+  transition:border-bottom 0.5s ease-in-out;
+  /*헤더 밑에 밑줄이 무빙효과가 생겨짐  */
 `;
 
 const SLink = styled(Link)`
@@ -39,18 +45,20 @@ const SLink = styled(Link)`
   /* 헤더가 다시 천장에 있던게 중앙높이로 교정됨 */
 `;
 
-export default () => (
+export default withRouter(({ location: {pathname} }) => (
   <Header>
+    {/* {console.log(props)} */}
     <List>
-      <Item>
+      <Item current={pathname === "/"}>
+        {/* 위에 콘솔로 통해 location pathname을 확인하여 각각 그값들을 true,false자리에 넣음 */}
         <SLink to="/">Movies</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/search"}>
         <SLink to="/search">Search</SLink>
       </Item>
     </List>
   </Header>
-);
+));
